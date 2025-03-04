@@ -1,6 +1,8 @@
 setup = function() {
     size(600, 400);
     background (98, 192, 239);
+    
+   
 };
 
 //Background Images
@@ -14,13 +16,29 @@ var doorImage = loadImage ("https://thumbs.dreamstime.com/b/background-fantasy-g
 
 var longpathImage = loadImage ("https://t4.ftcdn.net/jpg/01/38/81/53/360_F_138815333_nxZVxnha49hAHSHeyIzcfz58c8s8ZRHC.jpg");
 
+var forwardImage = loadImage ("https://www.shutterstock.com/image-vector/mossy-forest-waterfall-cave-background-600nw-2282685567.jpg");
+
+var badendingImage = loadImage ("https://wallpapers.com/images/hd/black-glitch-7uest1w60gf1k4l2.jpg");
+
+var longpathImage = loadImage ("https://t4.ftcdn.net/jpg/03/36/33/21/360_F_336332130_MK8MeXrubobFcf5mQ95XDreySIaPSbFf.jpg");
+
 //Variable Declarations
 var sceneImage = caveSceneImage;
 var sceneText = "Help find my cat!! Where do you want to look first?  [Press f for forest and c for cave]";
 
+
+
 draw = function(){
+
+
+
     
    drawScene();
+if (mousePressed && sceneText == "Bad idea... The boulders were not stable"){
+fill(255,255,255);
+text("Bad Ending", random(0,600), random (0,600))
+}
+
 
 
    if(keyPressed){
@@ -35,7 +53,7 @@ draw = function(){
        
        if (key == 'p'){
        sceneImage = longpathImage;
-      
+      sceneText = "The pahtway ends here, let's head back [Press 's']"
        }
        
       if(key == 'c'){
@@ -45,29 +63,57 @@ draw = function(){
       
       if (key == 'd'){
       sceneImage = doorImage;
-      sceneText = "No fox seen. Warm up by the fire or go back? [Press w for fire | c to go back]"
+      sceneText = "Warm up by the fire or go back? [Press i for fire | c to go back]"
       }
      
+     if(key == 'i'){
+     
+     }
+     
+     if (key == 'g') {
+     sceneImage = forwardImage;
+     sceneText = "Should we take the shortcut and step on the boulders to cross or take the long path around the water? [Press b for shortcut | l for long path]"
+     }
+     
+     if (key == 'b') {
+     sceneImage = badendingImage;
+     sceneText = "Bad idea... The boulders were not stable";
+    
+     }
+     
+     if (key == 'l') {
+     sceneImage = longpathImage;
+     sceneText = "There she is!!"
+     }
      
      if(key == 's'){
       sceneImage = caveSceneImage;
-      sceneText = "Help find my cat!! Where do you want to look first?  [Press f for forest and c for cave]";
+     
+      sceneText = "Help find my cat!! Where do you want to look first? [Press f for forest and c for cave]";
     } 
    }
   
 };
 
+
 var drawScene = function(){
    
   image(sceneImage, 0, 0);
-    fill(0,0,0);
+    fill(255,255,255);
     rect(50, 320, 500, 60);
       
-    fill(255,255,255);
+    fill(0,0,0);
     textSize(20);
    
    text(sceneText, 10, 375);
 };
+
+var drawCharacter = function (){
+fill(0,0,0);
+ellipse (50,50,290,510);
+}
+
+
 
 
 
